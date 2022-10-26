@@ -1,17 +1,18 @@
 const billAmount = document.querySelector('#bill-amount');
 const cashGiven = document.querySelector('#cash-given');
 const checkButton = document.querySelector('#check-button');
-const message = document.querySelector('#error-message');
-const notes = document.querySelectorAll(".note");
+const message = document.querySelector('#message');
+
 const availableNotes = [2000, 500, 100, 20, 10, 5, 1];
+const noOfNotes = document.querySelectorAll('.note');
 
-function hideMessage(msg) {
-    message.style.display = "";
-}
-
-function showMessage(msg) {
+function displayMessage(msg) {
     message.style.display = "block";
     message.innerText = msg;
+}
+
+function hideMessage() {
+    message.style.display = "";
 }
 
 checkButton.addEventListener("click", function validateBillAndCash() {
@@ -22,14 +23,11 @@ checkButton.addEventListener("click", function validateBillAndCash() {
             calculateChange(returnAmount);
         }
         else{
-            showMessage("Get ready to wash dishes!");
+            displayMessage("So, you want to wash dishes?");
         }
     }
-    // }else if (billAmount.vaalue === String ) {
-    //     showMessage("Don't give string as input instead of number.");
-    // }
     else{
-        showMessage("Invalid input");
+        displayMessage("Enter valid bill amount");
     }
 });
 
@@ -37,6 +35,6 @@ function calculateChange(returnAmount) {
     for (let i = 0; i < availableNotes.length; i++) {
         const numberOfNotes = Math.trunc(returnAmount / availableNotes[i]);
         returnAmount %= availableNotes[i];
-        notes.innerText =numberOfNotes;
+        noOfNotes[i].innerText = numberOfNotes;
     }
 }
