@@ -34,7 +34,7 @@ checkButton.addEventListener("click", function validateBillAndCash() {
 function calculateChange(returnAmount) {
     for (let i = 0; i < availableNotes.length; i++) {
         const numberOfNotes = Math.trunc(returnAmount / availableNotes[i]);
-        returnAmount %= availableNotes[i];
+        returnAmount = returnAmount % availableNotes[i];
         noOfNotes[i].innerText = numberOfNotes;
     }
 }
